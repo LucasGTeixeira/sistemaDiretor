@@ -11,8 +11,11 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String registroAluno;
+    @Enumerated(EnumType.STRING)
     private StatusAluno status;
 
     @ManyToMany(mappedBy = "listaAlunos")

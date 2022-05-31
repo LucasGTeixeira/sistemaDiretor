@@ -11,8 +11,11 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nomeCompleto;
+    @Column(nullable = false)
     private String cpf;
+    @Enumerated(EnumType.STRING)
     private StatusProfessor status;
 
     @OneToMany(mappedBy = "professor")
