@@ -15,7 +15,11 @@ public class Disciplina {
     private String nome;
     private Integer qntAulas;
 
-    @ManyToMany(mappedBy = "listaDisciplinas")
+    @ManyToMany
+    @JoinTable(
+            name = "disciplina_alunos",
+            joinColumns = {@JoinColumn(name = "disciplina_id")},
+            inverseJoinColumns = {@JoinColumn(name = "aluno_id")})
     private List<Aluno> listaAlunos;
 
     @ManyToOne
