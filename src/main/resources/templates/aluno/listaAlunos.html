@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Home</title>
+  <title>Lista Alunos</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -41,15 +41,32 @@
     <div class="col-sm-3 sidenav">
       <h4>Sistema Diretor</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/professores/listarProfessores">Professores</a></li>
         <li><a href="/disciplinas/listarDisciplinas">Disciplinas</a></li>
-        <li><a href="/alunos/listarAlunos">Alunos</a></li>
+        <li class="active"><a href="#">Alunos</a></li>
       </ul><br>
     </div>
 
     <div class="col-sm-9">
-
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
