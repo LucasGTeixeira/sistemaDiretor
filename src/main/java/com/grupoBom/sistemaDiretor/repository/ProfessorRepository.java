@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
-    List<Professor> findProfessorsByStatus(StatusProfessor status);
+    List<Professor>findProfessorsByStatus(StatusProfessor status);
 
     Professor findProfessorByNumRegistro(String numRegistro);
 }

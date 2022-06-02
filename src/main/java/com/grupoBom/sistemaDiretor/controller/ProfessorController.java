@@ -1,8 +1,10 @@
 package com.grupoBom.sistemaDiretor.controller;
 
 import com.grupoBom.sistemaDiretor.dto.ProfessorDTO;
+import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
 import com.grupoBom.sistemaDiretor.model.professor.Professor;
 import com.grupoBom.sistemaDiretor.model.professor.StatusProfessor;
+import com.grupoBom.sistemaDiretor.service.DisciplinaService;
 import com.grupoBom.sistemaDiretor.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +22,15 @@ import java.util.List;
 public class ProfessorController {
 
     private final ProfessorService professorService;
+    private final DisciplinaService disciplinaService;
+
+    public ProfessorController(ProfessorService professorService, DisciplinaService disciplinaService) {
+        this.professorService = professorService;
+        this.disciplinaService = disciplinaService;
+    }
 
     @Autowired
-    public ProfessorController(ProfessorService professorService) {
-        this.professorService = professorService;
-    }
+
 
     @GetMapping("/listarProfessores")
     public ModelAndView getProfessores(){
@@ -36,8 +42,10 @@ public class ProfessorController {
 
     @GetMapping("/new")
     public ModelAndView postProfessor(){
-        ModelAndView mv = new ModelAndView("professor/cadastroProfessor");
+        ModelAndView mv = new ModelAndView("professor/cadastroProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
+        List<Disciplina> listaDisciplinas = disciplinaService.getDisciplinas();
+        mv.addObject("disciplinas", listaDisciplinas);
         return mv;
     }
 
