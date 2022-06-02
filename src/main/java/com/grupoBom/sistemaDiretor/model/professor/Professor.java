@@ -14,6 +14,8 @@ public class Professor {
     @Column(nullable = false)
     private String nomeCompleto;
     @Column(nullable = false)
+    private String numRegistro;
+    @Column(nullable = false)
     private String cpf;
     @Enumerated(EnumType.STRING)
     private StatusProfessor status;
@@ -40,6 +42,22 @@ public class Professor {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getNumRegistro() {
+        return numRegistro;
+    }
+
+    public void setNumRegistro(String numRegistro) {
+        this.numRegistro = numRegistro;
+    }
+
+    public List<Disciplina> getListDisciplinas() {
+        return listDisciplinas;
+    }
+
+    public void setListDisciplinas(List<Disciplina> listDisciplinas) {
+        this.listDisciplinas = listDisciplinas;
     }
 
     public void setCpf(String cpf) {
