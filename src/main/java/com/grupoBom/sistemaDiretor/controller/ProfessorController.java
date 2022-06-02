@@ -17,12 +17,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/professores")
-public class ProfessorConstroller {
+public class ProfessorController {
 
     private final ProfessorService professorService;
 
     @Autowired
-    public ProfessorConstroller(ProfessorService professorService) {
+    public ProfessorController(ProfessorService professorService) {
         this.professorService = professorService;
     }
 

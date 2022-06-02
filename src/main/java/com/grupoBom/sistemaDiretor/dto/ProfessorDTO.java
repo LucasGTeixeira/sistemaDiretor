@@ -17,6 +17,7 @@ public class ProfessorDTO {
     private String cpf;
     @NotNull
     private StatusProfessor status;
+    //pode ser null pois o professor será nosso elemento independente (assim como aluno)
     private List<Disciplina> listDisciplinas;
 
     public String getNomeCompleto() {
