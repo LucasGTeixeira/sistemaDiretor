@@ -20,7 +20,19 @@ public class ProfessorService {
         this.alunoRepository = alunoRepository;
     }
 
-    public List<Professor> getProfessroes(){
+    public List<Professor> findProfessroes(){
         return professorRepository.findAll();
+    }
+
+    public void saveProfessor(Professor professor){
+        professorRepository.save(professor);
+    }
+
+    public void updateProfessor(Professor professor){
+        saveProfessor(professor);
+    }
+
+    public void deleteProfessorById(Long id){
+        professorRepository.deleteById(id);
     }
 }

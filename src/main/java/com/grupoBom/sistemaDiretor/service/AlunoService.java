@@ -6,6 +6,7 @@ import com.grupoBom.sistemaDiretor.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.AbstractList;
 import java.util.List;
 
 @Service
@@ -22,5 +23,17 @@ public class AlunoService {
 
     public List<Aluno> getAlunos(){
         return alunoRepository.findAll();
+    }
+
+    public void saveAluno(Aluno aluno){
+        alunoRepository.save(aluno);
+    }
+
+    public void updateAluno(Aluno aluno){
+        saveAluno(aluno);
+    }
+
+    public void deleteAlunoById(Long id){
+        alunoRepository.deleteById(id);
     }
 }

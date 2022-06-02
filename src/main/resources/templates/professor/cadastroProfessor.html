@@ -50,7 +50,7 @@
 
         <div class="col-sm-9">
             <br>
-            <form action="/professores" method="post">
+            <form action="/professores/save" method="post">
                 <div class="form-group">
                     <label for="nomeCompleto">Nome Completo</label>
                     <input type="text" class="form-control" name="nomeCompleto" id="nomeCompleto">
@@ -65,16 +65,16 @@
                 </div>
                 <div class="form-group">
                     <label for="status">Status do professor</label><br>
-                    <select id="status" class="form-select">
+                    <select id="status" class="form-select" name="status">
                         <option th:each="status : ${professorStatus}"
                         th:value="${status}" th:text="${status.descricao}"></option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <select class="form-select">
-                        <option></option>
-                    </select>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <select class="form-select">-->
+<!--                        <option></option>-->
+<!--                    </select>-->
+<!--                </div>-->
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

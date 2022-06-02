@@ -26,4 +26,17 @@ public class DisciplinaService {
     public List<Disciplina> getDisciplinas(){
         return disciplinaRepository.findAll();
     }
+
+    public void saveDisciplina(Disciplina disciplina){
+        disciplinaRepository.save(disciplina);
+    }
+
+    public void updateDisciplina(Disciplina disciplina){
+        saveDisciplina(disciplina);
+    }
+
+    public void deleteDisciplinaById(Long id){
+        disciplinaRepository.deleteById(id);
+    }
+
 }
