@@ -10,4 +10,5 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
     List<Disciplina> findDisciplinasByNome(String name);
 
     Optional<Disciplina> findDisciplinaByNome(String nome);
+
 }
