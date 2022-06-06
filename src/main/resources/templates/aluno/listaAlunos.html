@@ -64,7 +64,7 @@
           <td th:text="*{a.nome}"></td>
           <td th:text="*{a.registroAluno}"></td>
           <td th:text="*{a.status.descricao}"></td>
-          <td><a href="#">Detalhar</a></td>
+          <td><a th:href="@{/alunos/show/{alunoId}(alunoId = ${a.id})}">Detalhar</a></td>
           <td><a href="#">Editar</a></td>
           <td><a href="#">Deletar</a></td>
         </tr>

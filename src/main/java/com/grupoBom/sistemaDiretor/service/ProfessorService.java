@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfessorService {
@@ -34,5 +35,9 @@ public class ProfessorService {
 
     public void deleteProfessorById(Long id){
         professorRepository.deleteById(id);
+    }
+
+    public Optional<Professor> getProfessorById(Long id){
+        return professorRepository.findById(id);
     }
 }

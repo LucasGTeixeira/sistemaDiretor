@@ -66,7 +66,7 @@
           <td th:text="${p.numRegistro}"></td>
           <td th:text="${p.cpf}"></td>
           <td th:text="${p.status}"></td>
-          <td><a href="#">Detalhar</a></td>
+          <td><a th:href="@{/professores/show/{professorId}(professorId = ${p.id})}">Detalhar</a></td>
           <td><a href="#">Editar</a></td>
           <td><a href="#">Deletar</a></td>
         </tr>

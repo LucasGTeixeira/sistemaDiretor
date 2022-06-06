@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/alunos")
@@ -56,5 +58,18 @@ public class AlunoController {
         Aluno aluno = alunoDTO.toAluno();
         alunoService.saveAluno(aluno);
         return new ModelAndView("redirect:/alunos/listarAlunos");
+    }
+
+    @GetMapping("show/{id}")
+    public ModelAndView show(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("aluno/detalhesAluno.html");
+        Optional<Aluno> optionalAluno = alunoService.findAlunoById(id);
+        if(optionalAluno.isEmpty()){
+            System.out.println("id não encontrado");
+            return new ModelAndView("redirect:/alunos/listarAlunos");
+        }
+        Aluno aluno = optionalAluno.get();
+        mv.addObject("aluno", aluno);
+        return mv;
     }
 }
