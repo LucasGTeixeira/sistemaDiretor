@@ -52,18 +52,21 @@
       <table class="table">
         <thead class="thead-light">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Registro</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr th:each="p : ${professores}">
+          <td th:text="${p.id}"></td>
+          <td th:text="${p.nomeCompleto}"></td>
+          <td th:text="${p.numRegistro}"></td>
+          <td th:text="${p.cpf}"></td>
+          <td th:text="${p.status}"></td>
+          <td><a href="#">Detalhar</a></td>
           <td><a href="#">Editar</a></td>
           <td><a href="#">Deletar</a></td>
         </tr>

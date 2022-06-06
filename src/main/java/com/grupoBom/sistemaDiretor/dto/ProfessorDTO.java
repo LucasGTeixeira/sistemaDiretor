@@ -20,6 +20,17 @@ public class ProfessorDTO {
     //pode ser null pois o professor será nosso elemento independente (assim como aluno)
     private List<Disciplina> listDisciplinas;
 
+    public ProfessorDTO(String nomeCompleto, String numRegistro, String cpf, StatusProfessor status, List<Disciplina> listDisciplinas) {
+        this.nomeCompleto = nomeCompleto;
+        this.numRegistro = numRegistro;
+        this.cpf = cpf;
+        this.status = status;
+        this.listDisciplinas = listDisciplinas;
+    }
+
+    public ProfessorDTO() {
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }

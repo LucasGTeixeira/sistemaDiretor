@@ -1,6 +1,7 @@
 package com.grupoBom.sistemaDiretor.dto;
 
 import com.grupoBom.sistemaDiretor.model.aluno.Aluno;
+import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
 import com.grupoBom.sistemaDiretor.model.professor.Professor;
 
 import javax.validation.constraints.NotBlank;
@@ -47,5 +48,14 @@ public class DisciplinaDTO {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    public Disciplina toDisciplina(){
+        Disciplina disciplina = new Disciplina();
+        disciplina.setNome(this.nome);
+        disciplina.setQntAulas(this.qntAulas);
+        disciplina.setProfessor(this.professor);
+        disciplina.setListaAlunos(this.listaAlunos);
+        return disciplina;
     }
 }

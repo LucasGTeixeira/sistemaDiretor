@@ -35,13 +35,13 @@ public class ProfessorController {
     @GetMapping("/listarProfessores")
     public ModelAndView getProfessores(){
         ModelAndView mv = new ModelAndView("professor/listaProfessores.html");
-        List<Professor> listaProfessores = professorService.findProfessroes();
+        List<Professor> listaProfessores = professorService.getProfessroes();
         mv.addObject("professores", listaProfessores);
         return mv;
     }
 
     @GetMapping("/new")
-    public ModelAndView postProfessor(){
+    public ModelAndView getFormProfessor(ProfessorDTO professorDTO){
         ModelAndView mv = new ModelAndView("professor/cadastroProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
         List<Disciplina> listaDisciplinas = disciplinaService.getDisciplinas();
@@ -50,14 +50,16 @@ public class ProfessorController {
     }
 
     @PostMapping("/save")
-    public String create(@Valid ProfessorDTO professorDTO, BindingResult result){
+    public ModelAndView create(@Valid ProfessorDTO professorDTO, BindingResult result){
         if (result.hasErrors()){
             System.out.println("*****Erro Detectado*****");
-            return "redirect:professores/new";
+            ModelAndView mv = new ModelAndView("redirect:professores/new");
+            mv.addObject("professorStatus", StatusProfessor.values());
+            return mv;
         }
         Professor professor = professorDTO.toProfessor();
-
-        return "redirect:/professores/listarProfessores";
+        professorService.saveProfessor(professor);
+        return new ModelAndView("redirect:/professores/listarProfessores");
     }
 
 

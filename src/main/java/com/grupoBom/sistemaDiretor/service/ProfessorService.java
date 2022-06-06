@@ -20,7 +20,7 @@ public class ProfessorService {
         this.alunoRepository = alunoRepository;
     }
 
-    public List<Professor> findProfessroes(){
+    public List<Professor> getProfessroes(){
         return professorRepository.findAll();
     }
 

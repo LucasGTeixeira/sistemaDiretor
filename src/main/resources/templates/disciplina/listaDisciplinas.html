@@ -52,18 +52,19 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Qnt. Aulas</th>
+                    <th scope="col">Professor</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tr th:each="d : ${disciplinas}">
+                    <td th:text="*{d.id}"></td>
+                    <td th:text="*{d.nome}"></td>
+                    <td th:text="*{d.qntAulas}"></td>
+                    <td th:text="*{d.professor}"></td>
+                    <td><a href="#">Detalhar</a></td>
                     <td><a href="#">Editar</a></td>
                     <td><a href="#">Deletar</a></td>
                 </tr>

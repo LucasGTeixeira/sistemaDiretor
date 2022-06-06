@@ -1,5 +1,6 @@
 package com.grupoBom.sistemaDiretor.dto;
 
+import com.grupoBom.sistemaDiretor.model.aluno.Aluno;
 import com.grupoBom.sistemaDiretor.model.aluno.StatusAluno;
 import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
 
@@ -47,5 +48,14 @@ public class AlunoDTO {
 
     public void setListaDisciplinas(List<Disciplina> listaDisciplinas) {
         this.listaDisciplinas = listaDisciplinas;
+    }
+
+    public Aluno toAluno(){
+        Aluno aluno = new Aluno();
+        aluno.setNome(this.nome);
+        aluno.setRegistroAluno(this.registroAluno);
+        aluno.setStatus(this.status);
+        aluno.setListaDisciplinas(this.listaDisciplinas);
+        return aluno;
     }
 }
