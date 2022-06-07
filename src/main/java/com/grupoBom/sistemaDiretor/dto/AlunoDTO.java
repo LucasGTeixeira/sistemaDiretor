@@ -2,11 +2,10 @@ package com.grupoBom.sistemaDiretor.dto;
 
 import com.grupoBom.sistemaDiretor.model.aluno.Aluno;
 import com.grupoBom.sistemaDiretor.model.aluno.StatusAluno;
-import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
+import com.grupoBom.sistemaDiretor.model.curso.Curso;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 public class AlunoDTO {
     @NotBlank
@@ -15,8 +14,16 @@ public class AlunoDTO {
     private String registroAluno;
     @NotNull
     private StatusAluno status;
+    @NotNull
+    private Curso curso;
 
-    private List<Disciplina> listaDisciplinas;
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
     public String getNome() {
         return nome;
@@ -42,20 +49,12 @@ public class AlunoDTO {
         this.status = status;
     }
 
-    public List<Disciplina> getListaDisciplinas() {
-        return listaDisciplinas;
-    }
-
-    public void setListaDisciplinas(List<Disciplina> listaDisciplinas) {
-        this.listaDisciplinas = listaDisciplinas;
-    }
-
     public Aluno toAluno(){
         Aluno aluno = new Aluno();
         aluno.setNome(this.nome);
         aluno.setRegistroAluno(this.registroAluno);
         aluno.setStatus(this.status);
-        aluno.setListaDisciplinas(this.listaDisciplinas);
+        aluno.setCurso(this.curso);
         return aluno;
     }
 
@@ -63,7 +62,7 @@ public class AlunoDTO {
         aluno.setNome(this.nome);
         aluno.setRegistroAluno(this.registroAluno);
         aluno.setStatus(this.status);
-        aluno.setListaDisciplinas(this.listaDisciplinas);
+        aluno.setCurso(this.curso);
         return aluno;
     }
 
@@ -71,6 +70,6 @@ public class AlunoDTO {
         this.nome = aluno.getNome();
         this.registroAluno = aluno.getRegistroAluno();
         this.status = aluno.getStatus();
-        this.listaDisciplinas = aluno.getListaDisciplinas();
+        this.curso = aluno.getCurso();
     }
 }

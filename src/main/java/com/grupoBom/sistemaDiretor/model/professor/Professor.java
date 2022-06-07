@@ -1,9 +1,7 @@
 package com.grupoBom.sistemaDiretor.model.professor;
 
-import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
-
+import com.grupoBom.sistemaDiretor.model.curso.Curso;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "professores")
@@ -20,9 +18,17 @@ public class Professor {
     @Enumerated(EnumType.STRING)
     private StatusProfessor status;
 
-    @OneToMany(mappedBy = "professor")
-    private List<Disciplina> listDisciplinas;
+    @ManyToOne()
+    @JoinColumn(name = "curso_id_fk")
+    private Curso curso;
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
     public Long getId() {
         return id;
@@ -50,14 +56,6 @@ public class Professor {
 
     public void setNumRegistro(String numRegistro) {
         this.numRegistro = numRegistro;
-    }
-
-    public List<Disciplina> getListDisciplinas() {
-        return listDisciplinas;
-    }
-
-    public void setListDisciplinas(List<Disciplina> listDisciplinas) {
-        this.listDisciplinas = listDisciplinas;
     }
 
     public void setCpf(String cpf) {

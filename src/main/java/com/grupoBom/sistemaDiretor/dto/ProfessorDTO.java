@@ -1,12 +1,11 @@
 package com.grupoBom.sistemaDiretor.dto;
 
-import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
+import com.grupoBom.sistemaDiretor.model.curso.Curso;
 import com.grupoBom.sistemaDiretor.model.professor.Professor;
 import com.grupoBom.sistemaDiretor.model.professor.StatusProfessor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 public class ProfessorDTO {
     @NotBlank
@@ -17,18 +16,27 @@ public class ProfessorDTO {
     private String cpf;
     @NotNull
     private StatusProfessor status;
-    //pode ser null pois o professor será nosso elemento independente (assim como aluno)
-    private List<Disciplina> listDisciplinas;
+    @NotNull
+    private Curso curso;
 
-    public ProfessorDTO(String nomeCompleto, String numRegistro, String cpf, StatusProfessor status, List<Disciplina> listDisciplinas) {
+
+    public ProfessorDTO(String nomeCompleto, String numRegistro, String cpf, StatusProfessor status, Curso curso) {
         this.nomeCompleto = nomeCompleto;
         this.numRegistro = numRegistro;
         this.cpf = cpf;
         this.status = status;
-        this.listDisciplinas = listDisciplinas;
+        this.curso = curso;
     }
 
     public ProfessorDTO() {
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public String getNomeCompleto() {
@@ -63,20 +71,13 @@ public class ProfessorDTO {
         this.status = status;
     }
 
-    public List<Disciplina> getListDisciplinas() {
-        return listDisciplinas;
-    }
-
-    public void setListDisciplinas(List<Disciplina> listDisciplinas) {
-        this.listDisciplinas = listDisciplinas;
-    }
-
     public Professor toProfessor(){
         Professor professor = new Professor();
         professor.setNomeCompleto(this.nomeCompleto);
         professor.setNumRegistro(this.numRegistro);
         professor.setCpf(this.cpf);
         professor.setStatus(this.status);
+        professor.setCurso(this.curso);
         return professor;
     }
 
@@ -85,7 +86,7 @@ public class ProfessorDTO {
         professor.setCpf(this.cpf);
         professor.setNumRegistro(this.numRegistro);
         professor.setStatus(this.status);
-        professor.setListDisciplinas(this.listDisciplinas);
+        professor.setCurso(this.curso);
         return professor;
     }
 
@@ -94,6 +95,17 @@ public class ProfessorDTO {
         this.cpf = professor.getCpf();
         this.numRegistro = professor.getNumRegistro();
         this.status = professor.getStatus();
-        this.listDisciplinas = professor.getListDisciplinas();
+        this.curso = professor.getCurso();
+    }
+
+    @Override
+    public String toString() {
+        return "ProfessorDTO{" +
+                "nomeCompleto='" + nomeCompleto + '\'' +
+                ", numRegistro='" + numRegistro + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", status=" + status +
+                ", curso=" + curso +
+                '}';
     }
 }

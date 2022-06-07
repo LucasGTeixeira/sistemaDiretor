@@ -3,9 +3,9 @@ package com.grupoBom.sistemaDiretor.controller;
 import com.grupoBom.sistemaDiretor.dto.AlunoDTO;
 import com.grupoBom.sistemaDiretor.model.aluno.Aluno;
 import com.grupoBom.sistemaDiretor.model.aluno.StatusAluno;
-import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
+import com.grupoBom.sistemaDiretor.model.curso.Curso;
 import com.grupoBom.sistemaDiretor.service.AlunoService;
-import com.grupoBom.sistemaDiretor.service.DisciplinaService;
+import com.grupoBom.sistemaDiretor.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -25,12 +25,12 @@ import java.util.Optional;
 public class AlunoController {
 
     private final AlunoService alunoService;
-    private final DisciplinaService disciplinaService;
+    private final CursoService cursoService;
 
     @Autowired
-    public AlunoController(AlunoService alunoService, DisciplinaService disciplinaService) {
+    public AlunoController(AlunoService alunoService, CursoService cursoService) {
         this.alunoService = alunoService;
-        this.disciplinaService = disciplinaService;
+        this.cursoService = cursoService;
     }
 
     @GetMapping("/listarAlunos")
@@ -45,8 +45,8 @@ public class AlunoController {
     public ModelAndView getFormAluno(AlunoDTO alunoDTO){
         ModelAndView mv = new ModelAndView("aluno/cadastroAluno.html");
         mv.addObject("alunoStatus", StatusAluno.values());
-        List<Disciplina> listaDisciplinas = disciplinaService.getDisciplinas();
-        mv.addObject("disciplinas", listaDisciplinas);
+        List<Curso> listaCursos = cursoService.getCursos();
+        mv.addObject("cursos", listaCursos);
         return mv;
     }
 
@@ -86,7 +86,7 @@ public class AlunoController {
         ModelAndView mv = new ModelAndView("aluno/editarAluno.html");
         mv.addObject("alunoStatus", StatusAluno.values());
         mv.addObject("alunoId", aluno.getId());
-        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+        mv.addObject("cursos", cursoService.getCursos());
         return mv;
     }
 
@@ -96,7 +96,7 @@ public class AlunoController {
             System.out.println("***** erro de validação *****");
             ModelAndView mv = new ModelAndView("redirect:/alunos/listarAlunos");
             mv.addObject("alunoStatus", StatusAluno.values());
-            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+            mv.addObject("cursos", cursoService.getCursos());
             return mv;
         }
         Optional<Aluno> optionalAluno = alunoService.findAlunoById(id);

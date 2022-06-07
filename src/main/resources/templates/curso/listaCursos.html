@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista Disciplinas</title>
+    <title>Lista Cursos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -41,9 +41,9 @@
         <div class="col-sm-3 sidenav">
             <h4>Sistema Diretor</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="/professores/listarProfessores">Professores</a></li>
-                <li class="active"><a href="#">Disciplinas</a></li>
+                <li><a href="/cursos/listarCursos">Curso</a></li>
                 <li><a href="/alunos/listarAlunos">Alunos</a></li>
             </ul><br>
         </div>
@@ -54,19 +54,18 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Qnt. Aulas</th>
-                    <th scope="col">Professor</th>
+                    <th scope="col">Código</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="d : ${disciplinas}">
-                    <td th:text="*{d.id}"></td>
-                    <td th:text="*{d.nome}"></td>
-                    <td th:text="*{d.qntAulas}"></td>
-                    <td th:text="*{d.professor}"></td>
-                    <td><a href="#">Detalhar</a></td>
-                    <td><a href="#">Editar</a></td>
-                    <td><a href="#">Deletar</a></td>
+                <tr th:each="c : ${cursos}">
+                    <td th:text="*{c.id}"></td>
+                    <td th:text="*{c.nome}"></td>
+                    <td th:text="*{c.codigo}"></td>
+                    <td><a th:href="@{/cursos/show/{cursoId}(cursoId = ${c.id})}">Detalhar</a></td>
+                    <td><a th:href="@{/cursos/{cursoId}/edit(cursoId = ${c.id})}">Editar</a></td>
+                    <td><a th:href="@{/cursos/{cursoId}/delete(cursoId = ${c.id})}">Deletar</a></td>
+
                 </tr>
                 </tbody>
             </table>

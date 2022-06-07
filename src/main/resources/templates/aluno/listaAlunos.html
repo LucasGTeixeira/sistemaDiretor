@@ -41,10 +41,10 @@
     <div class="col-sm-3 sidenav">
       <h4>Sistema Diretor</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/">Home</a></li>
         <li><a href="/professores/listarProfessores">Professores</a></li>
-        <li><a href="/disciplinas/listarDisciplinas">Disciplinas</a></li>
-        <li class="active"><a href="#">Alunos</a></li>
+        <li><a href="/cursos/listarCursos">Curso</a></li>
+        <li><a href="/alunos/listarAlunos">Alunos</a></li>
       </ul><br>
     </div>
 
@@ -56,6 +56,7 @@
           <th scope="col">Nome</th>
           <th scope="col">Registro</th>
           <th scope="col">Status</th>
+          <th scope="col">Curso</th>
         </tr>
         </thead>
         <tbody>
@@ -64,6 +65,7 @@
           <td th:text="*{a.nome}"></td>
           <td th:text="*{a.registroAluno}"></td>
           <td th:text="*{a.status.descricao}"></td>
+          <td th:text="*{a.curso.nome}"></td>
           <td><a th:href="@{/alunos/show/{alunoId}(alunoId = ${a.id})}">Detalhar</a></td>
           <td><a th:href="@{/alunos/{alunoId}/edit(alunoId = ${a.id})}">Editar</a></td>
           <td><a th:href="@{/alunos/{alunoId}/delete(alunoId = ${a.id})}">Deletar</a></td>

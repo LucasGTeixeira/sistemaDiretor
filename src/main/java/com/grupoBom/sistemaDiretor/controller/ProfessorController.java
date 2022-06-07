@@ -3,7 +3,7 @@ package com.grupoBom.sistemaDiretor.controller;
 import com.grupoBom.sistemaDiretor.dto.ProfessorDTO;
 import com.grupoBom.sistemaDiretor.model.professor.Professor;
 import com.grupoBom.sistemaDiretor.model.professor.StatusProfessor;
-import com.grupoBom.sistemaDiretor.service.DisciplinaService;
+import com.grupoBom.sistemaDiretor.service.CursoService;
 import com.grupoBom.sistemaDiretor.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,11 +20,11 @@ import java.util.Optional;
 public class ProfessorController {
 
     private final ProfessorService professorService;
-    private final DisciplinaService disciplinaService;
+    private final CursoService cursoService;
 
-    public ProfessorController(ProfessorService professorService, DisciplinaService disciplinaService) {
+    public ProfessorController(ProfessorService professorService, CursoService cursoService) {
         this.professorService = professorService;
-        this.disciplinaService = disciplinaService;
+        this.cursoService = cursoService;
     }
 
     @Autowired
@@ -41,7 +41,7 @@ public class ProfessorController {
     public ModelAndView getFormProfessor(ProfessorDTO professorDTO){
         ModelAndView mv = new ModelAndView("professor/cadastroProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
-        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+        mv.addObject("cursos", cursoService.getCursos());
         return mv;
     }
 
@@ -49,9 +49,10 @@ public class ProfessorController {
     public ModelAndView create(@Valid ProfessorDTO professorDTO, BindingResult result){
         if (result.hasErrors()){
             System.out.println("*****Erro Detectado*****");
-            ModelAndView mv = new ModelAndView("redirect:professores/new");
+            System.out.println(professorDTO);
+            ModelAndView mv = new ModelAndView("redirect:/professores/new");
             mv.addObject("professorStatus", StatusProfessor.values());
-            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+            mv.addObject("cursos", cursoService.getCursos());
             return mv;
         }
         Professor professor = professorDTO.toProfessor();
@@ -84,7 +85,7 @@ public class ProfessorController {
         ModelAndView mv = new ModelAndView("professor/editarProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
         mv.addObject("professorId", professor.getId());
-        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+        mv.addObject("cursos", cursoService.getCursos());
         return mv;
     }
 
@@ -94,7 +95,7 @@ public class ProfessorController {
             System.out.println("**** erro durante o envio do formulário");
             ModelAndView mv = new ModelAndView("professor/editarProfessor");
             mv.addObject("professorStatus", StatusProfessor.values());
-            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+            mv.addObject("cursos", cursoService.getCursos());
             return mv;
         }
         Optional<Professor> optionalProfessor = professorService.getProfessorById(id);

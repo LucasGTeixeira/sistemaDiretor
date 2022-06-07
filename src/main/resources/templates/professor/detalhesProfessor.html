@@ -41,9 +41,9 @@
         <div class="col-sm-3 sidenav">
             <h4>Sistema Diretor</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="/">Home</a></li>
-                <li><a href="#">Professores</a></li>
-                <li><a href="/disciplinas/listarDisciplinas">Disciplinas</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/professores/listarProfessores">Professores</a></li>
+                <li><a href="/cursos/listarCursos">Curso</a></li>
                 <li><a href="/alunos/listarAlunos">Alunos</a></li>
             </ul><br>
         </div>
@@ -57,7 +57,7 @@
                         <b>Numero de Registro:</b> <span th:text="${professor.numRegistro}"></span><br>
                         <b>CPF:</b> <span th:text="${professor.cpf}"></span><br>
                         <b>Status:</b> <span th:text="${professor.status.descricao}"></span><br>
-                        <b>Disciplinas:</b> <span th:each="d : ${professor.listDisciplinas}" th:text="d.nome"></span><br>
+                        <b>Curso:</b> <span th:text="${professor.curso.nome}"></span><br>
                     </div>
                 </div>
                 <div class="row">
