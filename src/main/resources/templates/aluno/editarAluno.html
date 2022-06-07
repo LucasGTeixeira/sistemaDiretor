@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-sm-9">
-            <form th:object="${alunoDTO}" action="/alunos/save" method="POST">
+            <form th:object="${alunoDTO}" th:action="@{/alunos/{alunoId}(alunoId = ${alunoId})}" method="POST">
                 <div class="form-group">
                     <label for="nomeCompleto">Nome do Aluno</label>
                     <input th:errorclass="is-invalid" type="text" class="form-control" th:field="*{nome}" id="nomeCompleto">

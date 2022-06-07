@@ -81,7 +81,7 @@ public class ProfessorDTO {
     }
 
     public Professor toProfessor(Professor professor){
-        professor.setNomeCompleto(this.getNomeCompleto());
+        professor.setNomeCompleto(this.nomeCompleto);
         professor.setCpf(this.cpf);
         professor.setNumRegistro(this.numRegistro);
         professor.setStatus(this.status);

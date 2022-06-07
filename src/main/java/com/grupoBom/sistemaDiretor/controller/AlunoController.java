@@ -7,6 +7,7 @@ import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
 import com.grupoBom.sistemaDiretor.service.AlunoService;
 import com.grupoBom.sistemaDiretor.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,5 +74,50 @@ public class AlunoController {
         return mv;
     }
 
-    //TODO update e delete + configuração das páginas html
+    @GetMapping("/{id}/edit")
+    public ModelAndView edit(@PathVariable Long id, AlunoDTO alunoDTO){
+        Optional<Aluno> optionalAluno = alunoService.findAlunoById(id);
+        if(optionalAluno.isEmpty()){
+            System.out.println("***** id não encontrado *****");
+            return new ModelAndView("redirect:/alunos/listarAlunos");
+        }
+        Aluno aluno = optionalAluno.get();
+        alunoDTO.fromAluno(aluno);
+        ModelAndView mv = new ModelAndView("aluno/editarAluno.html");
+        mv.addObject("alunoStatus", StatusAluno.values());
+        mv.addObject("alunoId", aluno.getId());
+        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+        return mv;
+    }
+
+    @PostMapping("/{id}")
+    public ModelAndView update(@PathVariable Long id, @Valid AlunoDTO alunoDTO, BindingResult result){
+        if(result.hasErrors()){
+            System.out.println("***** erro de validação *****");
+            ModelAndView mv = new ModelAndView("redirect:/alunos/listarAlunos");
+            mv.addObject("alunoStatus", StatusAluno.values());
+            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+            return mv;
+        }
+        Optional<Aluno> optionalAluno = alunoService.findAlunoById(id);
+        if(optionalAluno.isEmpty()){
+            System.out.println("id não encontrado");
+            return new ModelAndView("redirect:/alunos/listarAlunos");
+        }
+        Aluno aluno = alunoDTO.toAluno(optionalAluno.get());
+        alunoService.saveAluno(aluno);
+        return new ModelAndView("redirect:/alunos/listarAlunos");
+    }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView delete(@PathVariable Long id){
+        try {
+            alunoService.deleteAlunoById(id);
+            return new ModelAndView("redirect:/alunos/listarAlunos");
+        }
+        catch (EmptyResultDataAccessException e){
+            System.out.println(e);
+            return new ModelAndView("redirect:/alunos/listarAlunos");
+        }
+    }
 }

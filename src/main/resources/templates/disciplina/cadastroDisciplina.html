@@ -9,10 +9,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
   <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    $(".chosen-select").chosen({
-      no_results_text: "Oops, nothing found!"
-    })
+    $(document).ready(function() {
+      $('.js-example-basic-multiple').select2();
+    });
   </script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
@@ -68,14 +70,17 @@
           <div class="invalid-feedback" th:errors="*{qntAulas}"></div>
         </div>
         <div class="form-group">
-          <label for="status">Alunos participantes</label><br>
-          <select multiple class="chosen-select" th:field="*{listaAlunos}">
+          <label>Alunos participantes</label><br>
+          <select class="js-example-basic-multiple" th:field="*{listaAlunos}" multiple="multiple">
+            <option value=""></option>
             <option th:each="aluno : ${alunos}"
-                    th:value="${aluno}" th:text="${aluno.nome}"></option>
+                    th:field="*{listaAlunos}"
+                    th:value="${aluno}"
+                    th:text="${aluno.nome}"></option>
           </select>
         </div>
         <div class="form-group">
-          <label for="status">Professor Responsável</label><br>
+          <label>Professor Responsável</label><br>
           <select id="status" class="form-select" th:field="*{professor}">
             <option th:each="professor : ${professores}"
                     th:value="${professor}" th:text="${professor.nomeCompleto}"></option>

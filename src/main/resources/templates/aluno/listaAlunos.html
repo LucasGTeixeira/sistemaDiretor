@@ -65,8 +65,8 @@
           <td th:text="*{a.registroAluno}"></td>
           <td th:text="*{a.status.descricao}"></td>
           <td><a th:href="@{/alunos/show/{alunoId}(alunoId = ${a.id})}">Detalhar</a></td>
-          <td><a href="#">Editar</a></td>
-          <td><a href="#">Deletar</a></td>
+          <td><a th:href="@{/alunos/{alunoId}/edit(alunoId = ${a.id})}">Editar</a></td>
+          <td><a th:href="@{/alunos/{alunoId}/delete(alunoId = ${a.id})}">Deletar</a></td>
         </tr>
         </tbody>
       </table>
