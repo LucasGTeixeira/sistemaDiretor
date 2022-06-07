@@ -58,4 +58,19 @@ public class AlunoDTO {
         aluno.setListaDisciplinas(this.listaDisciplinas);
         return aluno;
     }
+
+    public Aluno toAluno(Aluno aluno){
+        aluno.setNome(this.nome);
+        aluno.setRegistroAluno(this.registroAluno);
+        aluno.setStatus(this.status);
+        aluno.setListaDisciplinas(this.listaDisciplinas);
+        return aluno;
+    }
+
+    public void fromAluno(Aluno aluno){
+        this.nome = aluno.getNome();
+        this.registroAluno = aluno.getRegistroAluno();
+        this.status = aluno.getStatus();
+        this.listaDisciplinas = aluno.getListaDisciplinas();
+    }
 }

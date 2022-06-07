@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DisciplinaService {
@@ -37,6 +38,10 @@ public class DisciplinaService {
 
     public void deleteDisciplinaById(Long id){
         disciplinaRepository.deleteById(id);
+    }
+
+    public Optional<Disciplina> findDisciplinaById(Long id){
+        return disciplinaRepository.findById(id);
     }
 
 }

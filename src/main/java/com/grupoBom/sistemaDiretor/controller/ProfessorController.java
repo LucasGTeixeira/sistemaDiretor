@@ -1,7 +1,6 @@
 package com.grupoBom.sistemaDiretor.controller;
 
 import com.grupoBom.sistemaDiretor.dto.ProfessorDTO;
-import com.grupoBom.sistemaDiretor.model.disciplina.Disciplina;
 import com.grupoBom.sistemaDiretor.model.professor.Professor;
 import com.grupoBom.sistemaDiretor.model.professor.StatusProfessor;
 import com.grupoBom.sistemaDiretor.service.DisciplinaService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

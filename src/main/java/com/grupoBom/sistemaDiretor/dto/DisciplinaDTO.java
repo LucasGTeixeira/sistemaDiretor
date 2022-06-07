@@ -58,4 +58,20 @@ public class DisciplinaDTO {
         disciplina.setListaAlunos(this.listaAlunos);
         return disciplina;
     }
+
+    public Disciplina toDisciplina(Disciplina disciplina){
+        disciplina.setNome(this.nome);
+        disciplina.setQntAulas(this.qntAulas);
+        disciplina.setProfessor(this.professor);
+        disciplina.setListaAlunos(this.listaAlunos);
+        return disciplina;
+    }
+
+    public void fromDisciplina(Disciplina disciplina){
+        this.nome = disciplina.getNome();
+        this.qntAulas = disciplina.getQntAulas();
+        this.professor = disciplina.getProfessor();
+        this.listaAlunos = disciplina.getListaAlunos();
+    }
+
 }
