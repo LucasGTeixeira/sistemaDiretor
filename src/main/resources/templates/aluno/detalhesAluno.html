@@ -56,11 +56,10 @@
                         <b>Nome:</b> <span th:text="${aluno.nome}"></span><br>
                         <b>Numero de Registro:</b> <span th:text="${aluno.registroAluno}"></span><br>
                         <b>Status:</b> <span th:text="${aluno.status.descricao}"></span><br>
-                        <b>Disciplinas:</b> <span th:each="d : ${aluno.listaDisciplinas}" th:text="d.nome"></span><br>
+                        <b>Status:</b> <span th:text="${aluno.curso.nome}"></span><br>
                     </div>
                 </div>
                 <div class="row">
-                    <a href="#">Editar</a>
                     <a href="/professores/listarProfessores">Voltar</a>
                 </div>
             </div>

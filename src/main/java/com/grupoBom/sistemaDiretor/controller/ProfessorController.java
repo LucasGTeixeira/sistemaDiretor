@@ -55,6 +55,7 @@ public class ProfessorController {
             mv.addObject("cursos", cursoService.getCursos());
             return mv;
         }
+        System.out.println(professorDTO);
         Professor professor = professorDTO.toProfessor();
         professorService.saveProfessor(professor);
         return new ModelAndView("redirect:/professores/listarProfessores");

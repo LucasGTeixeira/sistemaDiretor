@@ -17,10 +17,10 @@ public class Curso {
     @Column(nullable = false)
     private String codigo;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Professor> professores;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Aluno> alunos;
 
     public Long getId() {

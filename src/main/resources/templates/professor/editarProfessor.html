@@ -77,7 +77,7 @@
                     <label for="curso">Curso</label><br>
                     <select id="curso" class="form-select" th:field="*{curso}">
                         <option th:each="c : ${cursos}"
-                                th:value="${c}" th:text="${c.nome}"></option>
+                                th:value="${c.id}" th:text="${c.nome}"></option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
