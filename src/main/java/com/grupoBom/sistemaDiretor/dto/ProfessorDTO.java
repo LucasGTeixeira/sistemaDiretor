@@ -79,4 +79,21 @@ public class ProfessorDTO {
         professor.setStatus(this.status);
         return professor;
     }
+
+    public Professor toProfessor(Professor professor){
+        professor.setNomeCompleto(this.getNomeCompleto());
+        professor.setCpf(this.cpf);
+        professor.setNumRegistro(this.numRegistro);
+        professor.setStatus(this.status);
+        professor.setListDisciplinas(this.listDisciplinas);
+        return professor;
+    }
+
+    public void fromProfessor(Professor professor){
+        this.nomeCompleto = professor.getNomeCompleto();
+        this.cpf = professor.getCpf();
+        this.numRegistro = professor.getNumRegistro();
+        this.status = professor.getStatus();
+        this.listDisciplinas = professor.getListDisciplinas();
+    }
 }

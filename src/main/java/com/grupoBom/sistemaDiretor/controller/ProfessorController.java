@@ -7,12 +7,10 @@ import com.grupoBom.sistemaDiretor.model.professor.StatusProfessor;
 import com.grupoBom.sistemaDiretor.service.DisciplinaService;
 import com.grupoBom.sistemaDiretor.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -37,8 +35,7 @@ public class ProfessorController {
     @GetMapping("/listarProfessores")
     public ModelAndView getProfessores(){
         ModelAndView mv = new ModelAndView("professor/listaProfessores.html");
-        List<Professor> listaProfessores = professorService.getProfessroes();
-        mv.addObject("professores", listaProfessores);
+        mv.addObject("professores", professorService.getProfessroes());
         return mv;
     }
 
@@ -46,8 +43,7 @@ public class ProfessorController {
     public ModelAndView getFormProfessor(ProfessorDTO professorDTO){
         ModelAndView mv = new ModelAndView("professor/cadastroProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
-        List<Disciplina> listaDisciplinas = disciplinaService.getDisciplinas();
-        mv.addObject("disciplinas", listaDisciplinas);
+        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
         return mv;
     }
 
@@ -57,6 +53,7 @@ public class ProfessorController {
             System.out.println("*****Erro Detectado*****");
             ModelAndView mv = new ModelAndView("redirect:professores/new");
             mv.addObject("professorStatus", StatusProfessor.values());
+            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
             return mv;
         }
         Professor professor = professorDTO.toProfessor();
@@ -77,8 +74,51 @@ public class ProfessorController {
         return mv;
     }
 
+    @GetMapping("/{id}/edit")
+    public ModelAndView edit(@PathVariable Long id, ProfessorDTO professorDTO){
+        Optional<Professor> optionalProfessor = professorService.getProfessorById(id);
+        if(optionalProfessor.isEmpty()){
+            System.out.println("***** id não encontrado *****");
+            return new ModelAndView("redirect:/professores/listarProfessores");
+        }
+        Professor professor = optionalProfessor.get();
+        professorDTO.fromProfessor(professor);
+        ModelAndView mv = new ModelAndView("professor/editarProfessor.html");
+        mv.addObject("professorStatus", StatusProfessor.values());
+        mv.addObject("professorId", professor.getId());
+        mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+        return mv;
+    }
 
+    @PostMapping("/{id}")
+    public ModelAndView update(@PathVariable Long id, @Valid ProfessorDTO professorDTO, BindingResult result){
+        if(result.hasErrors()){
+            System.out.println("**** erro durante o envio do formulário");
+            ModelAndView mv = new ModelAndView("professor/editarProfessor");
+            mv.addObject("professorStatus", StatusProfessor.values());
+            mv.addObject("disciplinas", disciplinaService.getDisciplinas());
+            return mv;
+        }
+        Optional<Professor> optionalProfessor = professorService.getProfessorById(id);
+        if(optionalProfessor.isEmpty()){
+            System.out.println("id não encontrado");
+            return new ModelAndView("redirect:/professores/listarProfessores");
+        }
+        Professor professor = professorDTO.toProfessor(optionalProfessor.get());
+        professorService.saveProfessor(professor);
+        return new ModelAndView("redirect:/professores/listarProfessores");
+    }
 
-
+    @GetMapping("/{id}/delete")
+    public ModelAndView delete(@PathVariable Long id){
+        try {
+            professorService.deleteProfessorById(id);
+            return new ModelAndView("redirect:/professores/listarProfessores");
+        }
+        catch (EmptyResultDataAccessException e){
+            System.out.println(e);
+            return new ModelAndView("redirect:/professores/listarProfessores");
+        }
+    }
 
 }

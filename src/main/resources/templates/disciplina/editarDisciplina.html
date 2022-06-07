@@ -1,12 +1,19 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Lista Professores</title>
+  <title>Cadastro Disciplina</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+  <script>
+    $(".chosen-select").chosen({
+      no_results_text: "Oops, nothing found!"
+    })
+  </script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 1500px}
@@ -49,29 +56,33 @@
     </div>
 
     <div class="col-sm-9">
-      <table class="table">
-        <thead class="thead-light">
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Registro</th>
-          <th scope="col">CPF</th>
-          <th scope="col">Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="p : ${professores}">
-          <td th:text="${p.id}"></td>
-          <td th:text="${p.nomeCompleto}"></td>
-          <td th:text="${p.numRegistro}"></td>
-          <td th:text="${p.cpf}"></td>
-          <td th:text="${p.status}"></td>
-          <td><a th:href="@{/professores/show/{professorId}(professorId = ${p.id})}">Detalhar</a></td>
-          <td><a th:href="@{/professores/{professorId}/edit(professorId = ${p.id})}">Editar</a></td>
-          <td><a th:href="@{/professores/{professorId}/delete(professorId = ${p.id})}">Deletar</a></td>
-        </tr>
-        </tbody>
-      </table>
+      <form th:object="${disciplinaDTO}" action="/disciplinas/save" method="POST">
+        <div class="form-group">
+          <label for="nomeCompleto">Nome</label>
+          <input th:errorclass="is-invalid" type="text" class="form-control" th:field="*{nome}" id="nomeCompleto">
+          <div class="invalid-feedback" th:errors="*{nome}"></div>
+        </div>
+        <div class="form-group">
+          <label for="numRegistro">Qnt. Aulas</label>
+          <input th:errorclass="is-invalid" type="number" class="form-control" th:field="*{qntAulas}" id="numRegistro">
+          <div class="invalid-feedback" th:errors="*{qntAulas}"></div>
+        </div>
+        <div class="form-group">
+          <label for="status">Alunos participantes</label><br>
+          <select multiple class="chosen-select" th:field="*{listaAlunos}">
+            <option th:each="aluno : ${alunos}"
+                    th:value="${aluno}" th:text="${aluno.nome}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="status">Professor Responsável</label><br>
+          <select id="status" class="form-select" th:field="*{professor}">
+            <option th:each="professor : ${professores}"
+                    th:value="${professor}" th:text="${professor.nomeCompleto}"></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </div>
