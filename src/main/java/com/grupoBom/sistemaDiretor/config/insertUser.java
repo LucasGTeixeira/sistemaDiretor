@@ -16,7 +16,7 @@ public class insertUser {
             // senha: 123
             Usuario admin = new Usuario(
                     "ADMIN",
-                    "diretor",
+                    "Diretor",
                     "$2a$12$HBYMMPuKVLBZ0EPVEWDTeuh.8wgojBC1nQ9HNGWY.ByN4GuZo8uN6"
             );
             usuarioRepository.save(admin);
