@@ -4,7 +4,7 @@ const fetchCurso = (id) => {
     return data
 }
 
-const fetchCursos = (id) => {
+const fetchCursos = () => {
     const resp = await fetch(`http://localhost:5432/cursos`)
     const data = await resp.json()
     return data
