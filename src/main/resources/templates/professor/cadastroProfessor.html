@@ -48,34 +48,34 @@
             </ul><br>
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-9" style="margin-top: 20px; margin-bottom: 20px;">
             <br>
             <form th:object="${professorDTO}" action="/professores/save" method="POST">
                 <div class="form-group">
                     <label for="nomeCompleto">Nome Completo</label>
-                    <input th:errorclass="is-invalid" type="text" class="form-control" th:field="*{nomeCompleto}" id="nomeCompleto">
+                    <input required th:errorclass="is-invalid" type="text" class="form-control" th:field="*{nomeCompleto}" id="nomeCompleto">
                     <div class="invalid-feedback" th:errors="*{nomeCompleto}"></div>
                 </div>
                 <div class="form-group">
                     <label for="numRegistro">Numero de Registro</label>
-                    <input th:errorclass="is-invalid" type="text" class="form-control" th:field="*{numRegistro}" id="numRegistro">
+                    <input required th:errorclass="is-invalid" type="text" class="form-control" th:field="*{numRegistro}" id="numRegistro">
                     <div class="invalid-feedback" th:errors="*{numRegistro}"></div>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input th:errorclass="is-invalid" type="text" class="form-control" th:field="*{cpf}" id="cpf">
+                    <input required  th:errorclass="is-invalid" type="text" class="form-control" th:field="*{cpf}" id="cpf">
                     <div class="invalid-feedback" th:errors="*{cpf}"></div>
                 </div>
                 <div class="form-group">
                     <label for="status">Status do professor</label><br>
-                    <select id="status" class="form-select" th:field="*{status}">
+                    <select required id="status" class="form-select" th:field="*{status}">
                         <option th:each="status : ${professorStatus}"
                         th:value="${status}" th:text="${status.descricao}"></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="curso">Curso</label><br>
-                    <select id="curso" class="form-select" th:field="*{curso}">
+                    <select required oninvalid="this.setCustomValidity('Selecione um curso, se vazio, deve-se cadastrar um curso para cadastrar um professor')" oninput="setCustomValidity('')" id="curso" class="form-select" th:field="*{curso}" >
                         <option th:each="c : ${cursos}"
                                 th:text="${c.nome}" th:value="${c.id}"></option>
                     </select>
