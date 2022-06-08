@@ -8,18 +8,25 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class insertUser {
+
+    
+
     @Bean
     CommandLineRunner commandLineRunner(UsuarioRepository usuarioRepository){
         return args -> {
             //mockando usuario com:
             // username: diretor
             // senha: 123
+            Usuario usuario = usuarioRepository.findUsuarioByUsername("diretor");
+            
             Usuario admin = new Usuario(
                     "ADMIN",
-                    "Diretor",
+                    "diretor",
                     "$2a$12$HBYMMPuKVLBZ0EPVEWDTeuh.8wgojBC1nQ9HNGWY.ByN4GuZo8uN6"
             );
-            usuarioRepository.save(admin);
+            if (usuario == null) {
+                usuarioRepository.save(admin);
+            }
         };
     }
 }

@@ -42,7 +42,7 @@ public class ProfessorController {
         return mv;
     }
 
-    @GetMapping("/novoProfessor")
+    @GetMapping("/new")
     public ModelAndView getFormProfessor(ProfessorDTO professorDTO){
         ModelAndView mv = new ModelAndView("professor/cadastroProfessor.html");
         mv.addObject("professorStatus", StatusProfessor.values());
