@@ -3,6 +3,7 @@ package com.grupoBom.sistemaDiretor.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,6 +47,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/alunos/**")
                 .hasAuthority("ADMIN")
                 .antMatchers("/cursos/**")
+                .hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/cursos/save")
                 .hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
