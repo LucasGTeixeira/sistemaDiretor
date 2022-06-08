@@ -10,7 +10,6 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView getHome(){
         ModelAndView mv = new ModelAndView("home.html");
-        //para adicionar algum objeto no modelo posteriormente
         return mv;
     }
 }
