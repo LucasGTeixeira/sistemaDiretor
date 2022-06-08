@@ -28,6 +28,11 @@ public class ProfessorController {
     }
 
     @Autowired
+    @GetMapping("/principalProfessor")
+    public ModelAndView pricipalProfessor(){
+        ModelAndView mv = new ModelAndView("professor/principalProfessor.html");
+        return mv;
+    }
 
 
     @GetMapping("/listarProfessores")

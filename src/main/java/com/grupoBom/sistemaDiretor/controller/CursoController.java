@@ -1,7 +1,6 @@
 package com.grupoBom.sistemaDiretor.controller;
 
 import com.grupoBom.sistemaDiretor.dto.CursoDTO;
-import com.grupoBom.sistemaDiretor.dto.CursoDTO;
 import com.grupoBom.sistemaDiretor.model.curso.Curso;
 import com.grupoBom.sistemaDiretor.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,14 @@ public class CursoController {
     public CursoController(CursoService cursoService) {
         this.cursoService = cursoService;
     }
+
+    @GetMapping("/principalCurso")
+    public ModelAndView pricipalCurso(){
+        ModelAndView mv = new ModelAndView("curso/principalCurso.html");
+        return mv;
+    }
+
+
 
     @GetMapping("/listarCursos")
     public ModelAndView getCursos(){

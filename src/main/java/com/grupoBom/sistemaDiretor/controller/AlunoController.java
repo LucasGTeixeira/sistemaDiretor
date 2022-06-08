@@ -33,6 +33,12 @@ public class AlunoController {
         this.cursoService = cursoService;
     }
 
+    @GetMapping("/principalAluno")
+    public ModelAndView pricipalAlunos(){
+        ModelAndView mv = new ModelAndView("aluno/principalAluno.html");
+        return mv;
+    }
+
     @GetMapping("/listarAlunos")
     public ModelAndView getAlunos(){
         ModelAndView mv = new ModelAndView("aluno/listaAlunos.html");
