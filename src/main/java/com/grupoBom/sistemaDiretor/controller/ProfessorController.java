@@ -22,12 +22,12 @@ public class ProfessorController {
     private final ProfessorService professorService;
     private final CursoService cursoService;
 
+    @Autowired
     public ProfessorController(ProfessorService professorService, CursoService cursoService) {
         this.professorService = professorService;
         this.cursoService = cursoService;
     }
 
-    @Autowired
     @GetMapping("/principalProfessor")
     public ModelAndView pricipalProfessor(){
         ModelAndView mv = new ModelAndView("professor/principalProfessor.html");
