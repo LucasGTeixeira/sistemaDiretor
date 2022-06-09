@@ -5,7 +5,7 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    container_name: sistemaDiretor
+    container_name: sistemadiretor
     environment:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: sistemaDiretor
