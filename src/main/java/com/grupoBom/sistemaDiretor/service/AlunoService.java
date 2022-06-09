@@ -13,12 +13,10 @@ import java.util.Optional;
 public class AlunoService {
 
     private final AlunoRepository alunoRepository;
-    private final CursoRepository cursoRepository;
 
     @Autowired
-    public AlunoService(AlunoRepository alunoRepository, CursoRepository cursoRepository) {
+    public AlunoService(AlunoRepository alunoRepository) {
         this.alunoRepository = alunoRepository;
-        this.cursoRepository = cursoRepository;
     }
 
     public List<Aluno> getAlunos(){

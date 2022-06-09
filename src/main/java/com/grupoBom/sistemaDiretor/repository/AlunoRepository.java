@@ -11,3 +11,9 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
     Aluno findAlunoByRegistroAluno(String registroAluno);
 }
+
+
+
+
+
+
