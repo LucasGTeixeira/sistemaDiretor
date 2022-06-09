@@ -11,5 +11,3 @@ services:
       MYSQL_DATABASE: sistemaDiretor
     ports:
       - 3306:3306
-    volumes:
-      - /var/lib/sistemaDiretor/
